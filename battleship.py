@@ -156,7 +156,7 @@ def main():
     for x in reversed(range(map_dims[1])):
         for y in range(map_dims[0]):
             if [y, x] in fleet_human.get_positions():
-                print("x", end="")
+                print("O", end="")
             else:
                 print("*", end="")
             # print(x, end="")
