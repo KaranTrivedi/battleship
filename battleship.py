@@ -141,6 +141,8 @@ def main():
     map_dims = [50,14]
 
     fleet_human = Fleet()
+
+    # Add ships till 5 are set on the map.
     counter = 0
     while True:
         ship = build_ship(map_dims) # Ship([0, 0], 2, 'vertical', map_dims)
