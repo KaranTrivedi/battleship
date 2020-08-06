@@ -1,0 +1,24 @@
+[Unit]
+Description=Service
+#After=multi-user.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/karan/projects/battleship
+ExecStart=/home/karan/projects/battleship/venv/bin/python3.8 /home/karan/projects/battleship/battleship.py
+ExecReload=/bin/kill -HUP 
+User=karan
+Group=karan
+
+Restart=always
+TimeoutStartSec=10
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+
+#sudo mv . /lib/systemd/system/
+#sudo sysmtemctl enable battleship.py
+#sudo sysmtemctl start battleship.py
+#sudo sysmtemctl status battleship.py
+
