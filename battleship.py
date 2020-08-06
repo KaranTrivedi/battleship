@@ -112,11 +112,21 @@ def build_ship(map_dims):
     Generate a ship object with random params.
     '''
 
-    length = print(random.randint(1,3))
+    length = random.randint(1,3)
     direction = ["vertical", "horizontal"][random.randint(0,1)]
-    coords = [random.randint(0,map_dims[0]), random.randint(0,map_dims[1])]
+    start = [random.randint(0,map_dims[0]), random.randint(0,map_dims[1])]
 
-    Ship(coords, length, direction, map_dims)
+    return Ship(start, length, direction, map_dims)
+
+def check_map(ship_pos, fleet_pos):
+    '''
+    Check if ship is on any of the existing positions
+    '''
+
+    for x in ship_pos:
+        if x in fleet_pos:
+            return True
+    return False
 
 def main():
     '''
@@ -130,21 +140,17 @@ def main():
     map_dims = [50,15]
 
     fleet_human = Fleet()
-    ship = Ship([0,0], 3, 'horizontal', map_dims)
-    if not ship.positions:
-        del ship
-        print("object destroyed")
-    else:
-        fleet_human.add_ship(ship)
-    
-    ship = Ship([0, 0], 2, 'vertical', map_dims)
-    if not ship.positions:
-        del ship
-        print("object destroyed")
-    else:
-        fleet_human.add_ship(ship)
-
-
+    counter = 0
+    while True:
+        ship = build_ship(map_dims) # Ship([0, 0], 2, 'vertical', map_dims)
+        if not ship.positions or check_map(ship.positions, fleet_human.get_positions()):
+            del ship
+            print("object destroyed")
+        else:
+            counter+= 1
+            fleet_human.add_ship(ship)
+        if counter > 4:
+            break
 
     for x in reversed(range(map_dims[1])):
         for y in range(map_dims[0]):
