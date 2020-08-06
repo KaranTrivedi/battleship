@@ -125,6 +125,7 @@ def check_map(ship_pos, fleet_pos):
 
     for x in ship_pos:
         if x in fleet_pos:
+            print("Overlapping ship.")
             return True
     return False
 
@@ -137,7 +138,7 @@ def main():
     if CONFIG[SECTION]['level'] == "DEBUG":
         show_sections()
 
-    map_dims = [50,15]
+    map_dims = [50,14]
 
     fleet_human = Fleet()
     counter = 0
@@ -162,8 +163,8 @@ def main():
         print()
         # print(y)
 
-    print("ship coords: ")
-    print(fleet_human.get_positions())
+    # print("ship coords: ")
+    # print(fleet_human.get_positions())
     # print(fleet_human.ships)
 
 if __name__ == "__main__":
